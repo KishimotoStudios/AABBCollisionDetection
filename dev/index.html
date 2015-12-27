@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="description" content="AABB 2D Collision Detection: An example showing how to detect collision between two AABB (Axis-Aligned Bounding Box) in 2D (uses HTML5/JS).">
+    <meta name="abstract" content="AABB 2D Collision Detection: An example showing how to detect collision between two AABB (Axis-Aligned Bounding Box) in 2D (uses HTML5/JS).">
+    <meta name="copyright" content="Copyright 2015 Kishimoto Studios. All Rights Reserved.">
+    <meta name="credits" content="Copyright 2015 Kishimoto Studios. All Rights Reserved.">
+    <meta name="author" content="Kishimoto Studios">
+	
+	<title>AABB 2D Collision Detection</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="button">
+		<button id="button_en">English</button>
+		<button id="button_pt">Português</button>
+	</div>
+
+	<div>
+		<h1 id="str_0">AABB 2D Collision Detection</h1>
+		<p id="str_1">An example showing how to detect collision between two AABB (Axis-Aligned Bounding Box) in 2D (uses HTML5/JS).</p>
+	</div>
+	
+	<canvas id="gameCanvas" width="512" height="512"></canvas>
+	
+	<div>
+		<p id="str_11" class="small"><a href="https://github.com/KishimotoStudios/AABBCollisionDetection" title="Source code">[Get the source code at GitHub]</a></p>
+	</div>
+
+	<div>
+		<h2 id="str_2">The idea</h2>
+		<p id="str_3">Two rectangles that are [XY] axis aligned do not collide if they are separated along an axis. If they overlap on both axes then they collide.</p>
+
+		<h2 id="str_4">The code</h2>
+		<p>
+<pre class="code">function checkAABBCollision(A, B)
+{
+  var AisToTheRightOfB = A.getLeft() > B.getRight();
+  var AisToTheLeftOfB = A.getRight() < B.getLeft();
+  var AisAboveB = A.getBottom() < B.getTop();
+  var AisBelowB = A.getTop() > B.getBottom();
+  return !(AisToTheRightOfB
+    || AisToTheLeftOfB
+    || AisAboveB
+    || AisBelowB);
+}
+</pre>
+		</p>
+		
+		<h2 id="str_5">Brief explanation</h2>
+		<p id="str_6">If the AABB of an object A is entirely to the right or to the left of the AABB of an object B, then both AABBs are not colliding in the X-axis. When the AABB of an object A is above or below the AABB of an object B, both AABBs are not colliding in the Y-axis.<br/>Only when these four cases are false that both AABBs collide (there is an overlap).<br/>For a 3D version, simply add the Z-axis and you should end up with two more cases to check (A is in front of B, A is behind B).</p>
+		
+		<h2 id="str_7">A note about the code</h2>
+		<p id="str_8">You can find this slightly modified code in <span class="code">main.js</span> as well as in <span class="code">KishiTechJS/aabb.js</span>.</p>
+		
+		<h2 id="str_9">Contact</h2>
+		<p id="str_10">We hope you enjoyed this article and let us know your thoughts about it! Reach us on <a href="http://twitter.com/KishimotoStudio">Twitter</a> and <a href="http://facebook.com/KishimotoStudios">Facebook</a>.</p> 
+	</div>
+
+	<div>
+		<p id="str_12">Copyright &copy; 2015, Kishimoto Studios. All Rights Reserved.</p>
+	</div>
+	
+	<script src="scripts/KishiTechJS/constants.js"></script>
+	<script src="scripts/KishiTechJS/canvas.js"></script>
+	<script src="scripts/KishiTechJS/keyboard.js"></script>
+	<script src="scripts/KishiTechJS/object.js"></script>
+	<script src="scripts/KishiTechJS/line.js"></script>
+	<script src="scripts/KishiTechJS/aabb.js"></script>
+	<script src="scripts/strings.js"></script>
+	<script src="scripts/main.js"></script>
+</body>
+</html>
