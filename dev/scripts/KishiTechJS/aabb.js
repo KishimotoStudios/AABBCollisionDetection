@@ -220,9 +220,8 @@ KishiTechJS.AABB.prototype.setIsFilled = function(isFilled)
 
 KishiTechJS.AABB.prototype.isCollidingWith = function(otherAABB)
 {
-	var isToTheRightOfOther = this.getLeft() > otherAABB.getRight();
-	var isToTheLeftOfOther = this.getRight() < otherAABB.getLeft();
-	var isAboveOther = this.getBottom() < otherAABB.getTop();
-	var isBelowOther = this.getTop() > otherAABB.getBottom();
-	return !(isToTheRightOfOther || isToTheLeftOfOther || isAboveOther || isBelowOther);
+	return !(this.getLeft() > otherAABB.getRight() // is to the right of other
+		|| this.getRight() < otherAABB.getLeft() // is to the left of other
+		|| this.getBottom() < otherAABB.getTop() // is above other
+		|| this.getTop() > otherAABB.getBottom()); // is below other
 }

@@ -256,9 +256,8 @@ function updateLines()
 
 function checkAABBCollision(aabb1, aabb2)
 {
-	var AisToTheRightOfB = aabb1.getLeft() > aabb2.getRight();
-	var AisToTheLeftOfB = aabb1.getRight() < aabb2.getLeft();
-	var AisAboveB = aabb1.getBottom() < aabb2.getTop();  
-	var AisBelowB = aabb1.getTop() > aabb2.getBottom();
-	return !(AisToTheRightOfB || AisToTheLeftOfB || AisAboveB || AisBelowB);
+	return !(aabb1.getLeft() > aabb2.getRight() // AisToTheRightOfB
+		|| aabb1.getRight() < aabb2.getLeft() // AisToTheLeftOfB
+		|| aabb1.getBottom() < aabb2.getTop() // AisAboveB
+		|| aabb1.getTop() > aabb2.getBottom()); // AisBelowB
 }
